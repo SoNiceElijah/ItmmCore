@@ -1,0 +1,48 @@
+html
+    head
+        <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+        <script src="logo.js"></script>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+        title API - itmm
+        style
+            include ./hi.css
+    body
+
+        .wrapper  
+            .scroller  
+                .sheet#s0
+                    .big
+                        .box
+                            .logo
+                                img#logotype(src="/blackone.gif")
+                            .side
+                                .top ITMM<span>CLOUD</span><i>v0.1.0</i>
+                                .bot Open itmm api
+                .sheet
+                    .center
+                        h2 Вступление
+                        p Собсно собираем этот апи. Он открытый и к нему есть документация. 
+                            | Это означает, что мы приветствуем <b>любое добросоветсное</b> использование  
+                            | наших методов. Зацените гифку сверху кстати. Халтура ссаная, потому что я не могу 
+                            | рендерить прозрачные гифки какого-то хера. Пипец обидно.
+                            | А еще я никогда не умел писать большие тексты. Так что надо попросить кого-то это сделать.
+
+                    
+                        h2 Methods
+
+                        each el, i in m
+                            h3= el.name                        
+                            table.methods 
+                                each line, j in el.content
+                                    tr(class="row-" + ((j%2)+1))
+                                        td <b> #{line.type} </b>
+                                        td <code> #{line.name} </code>
+                                        td 
+                                            if line.done
+                                                span.green
+                                            else
+                                                span.red
+                                                span.soon work in progress
+
+        script
+            include ./hi.js

@@ -1,0 +1,38 @@
+data:
+  -
+    name : User
+    content :
+      - POST /user/register x
+      - POST /user/login x
+      - POST /user/logout x
+      - POST /user/edit
+      - POST /user/delete
+  -
+    name: Timetable
+    content :
+      - POST /timetable/get
+      - POST /timetable/week
+      - POST /timetable/all
+      - POST /timetable/edit
+      - POST /timetable/update
+  -
+    name : Lesson
+    content:
+      - POST /lesson/get
+      - POST /lesson/all
+      - POST /lesson/edit
+      - POST /lesson/update
+  -
+    name : Conversation
+    content:
+      - POST /conversation/get 
+      - POST /conversation/send
+      - POST /conversation/upload
+      - POST /conversation/comment
+      - POST /conversation/like
+  -
+    name : News
+    content:
+      - POST /news/add
+      - POST /news/get
+      - POST /news/comment
