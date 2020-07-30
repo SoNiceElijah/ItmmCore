@@ -1,0 +1,25 @@
+{
+  "name": "itmmcore",
+  "version": "0.1.0",
+  "description": "Open itmm api",
+  "main": "core.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SoNiceElijah/ItmmCore.git"
+  },
+  "author": "SoNiceElijah",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SoNiceElijah/ItmmCore/issues"
+  },
+  "homepage": "https://github.com/SoNiceElijah/ItmmCore#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.26"
+  }
+}
