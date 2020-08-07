@@ -8,7 +8,7 @@ router.post('/register',$.v({
     $password : String,
     
     $username : String,
-    $vk : String,
+    $code : String,
 
     group : String,
     sub : String,
@@ -20,7 +20,13 @@ router.post('/register',$.v({
     {
         return res.status(500).json({ error : "Login already taken"});
     }
+    let vk = $.regs.register(req.body.code, req.body.username);
+    if(!vk)
+    {
+        return res.status(400).json({ error : "Invalid vk code"});
+    }
 
+    u.vk = vk;
     u.level = 0;
     u.save();
 
