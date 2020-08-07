@@ -12,8 +12,8 @@ body {
     height: 100%;
 }
 
-.scroller  {
-    width: 100% ;
+.scroller {
+    width: 100%;
     overflow: hidden;
 }
 
@@ -74,7 +74,7 @@ body {
 .methods {
     width: 750px;
     border-collapse: collapse;
-    
+
 }
 
 .methods td:first-child {
@@ -86,7 +86,7 @@ body {
 .methods td:last-child {
     width: 200px;
     text-align: right;
-    
+
 }
 
 .methods td {
@@ -103,7 +103,7 @@ body {
     background: #cfcfcf;
 }
 
- .green {
+.green {
     position: absolute;
     top: 5px;
     right: -50px;
@@ -131,12 +131,13 @@ body {
     transition: 0.2s;
 }
 
-.red:after, .green:after {
+.red:after,
+.green:after {
     content: "";
     position: absolute;
-  }
+}
 
-  .red:after {
+.red:after {
     left: 10px;
     top: 10px;
     width: 10px;
@@ -146,38 +147,173 @@ body {
     background: #ffffff;
 
 
-  }
+}
 
- .green:after {
+.green:after {
     left: 11px;
     top: 7px;
     width: 5px;
     height: 10px;
     border: solid white;
-    
+
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 
-  }
+}
 
-  .red:hover {
+.red:hover {
     background: #d67456;
-  }
+}
 
 
-  tr {
-      cursor: pointer;
-      transition: 0.2s;
+tr {
+    cursor: pointer;
+    transition: 0.2s;
 
 
-  }
+}
 
-  tr:hover {
-      background: #e3e9e0;
-  }
+tr:hover {
+    background: #e3e9e0;
+}
 
-  .top i {
-      font-size: 12px;
-  }
+.top i {
+    font-size: 12px;
+}
+
+#testFile {
+    display: none;
+}
+
+label[for="testFile"] {
+    cursor: pointer;
+    padding: 10px 20px 10px 20px;
+    text-align: center;
+    width: 160px;
+    display: inline-block;
+    border-radius: 3px;
+
+    background: #d6566b;
+    color: #ffffff;
+
+    font-weight: 600;
+    transition: 0.1s;
+}
+
+label[for="testFile"]:hover {
+    background: #b34053;
+    color: #d3d3d3;
+}
+
+.upload {
+    cursor: pointer;
+    padding: 10px 20px 10px 20px;
+    border-radius: 3px;
+
+    background: #d6566b;
+    color: #ffffff;
+
+    font-weight: 600;
+    font-size: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    transition: 0.1s;
+
+    display: inline-block;
+    margin-left: 10px;
+    border: none;
+    outline: none;
+}
+
+.upload:hover {
+    background: #b34053;
+    color: #d3d3d3;
+}
+
+.loader-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.loader-list-item {
+
+    border: 1px solid #e0e0e0;
+
+    position: relative;
+
+    user-select: none;
+    width: 100px;
+    height: 100px;
+
+    margin-right: 10px;
+    margin-top: 30px;
+
+    line-height: 100px;
+    text-align: center;
+
+    font-size: 20px;
+    font-weight: 600;
+    color: #b34053;
+
+    border-radius: 5px;
+    background: #e0e0e0;
+
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+}
+
+.loader-list-item-done {
+    background: #b34053; 
+    border: 1px solid #b34053;
+    color: #e0e0e0;
+
+    margin-top: 10px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.loader-list-item-done:hover {
+    background: #e0e0e0; 
+    border: 1px solid #b34053;
+    color: #b34053;
+}
+
+.loader-list-item-done .loader-pregress-box {
+    opacity: 0.0;
+}
+
+.loader-pregress-box {
+
+    position: absolute;
+
+    top: -15px;
+    left: 0;
+
+    display: inline-block;
+    height: 5px;
+
+    border: 1px solid #d6566b;
+
+    width: 100px;
+    border-radius: 2px;
+
+    overflow: hidden;
+
+
+}
+
+.splitter {
+    margin-top: 20px;
+}
+
+.loader-progress {
+    height: 10px;
+    background: #d6566b;
+    width: 0;
+
+    transition: ease-out 0.2s;
+}

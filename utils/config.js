@@ -4,6 +4,8 @@ let config = {};
 
 function read()
 {
+    //Error if not exist
+
     let str = fs.readFileSync(__dirname + '\\..\\.config','utf8');
 
     let lines = str.split('\n');

@@ -43,6 +43,15 @@ html
                                             else
                                                 span.red
                                                 span.soon work in progress
+                .sheet
+                    .center
+                        h2 Тест работы файлов
+                        p Тест для проверки загрузки файла на сервер. Не стесняйся и проверь!                        
+                        label(for="testFile") UPLOAD FILE
+                        input#testFile(type="file", name="testSheet" multiple )
+
+                        .loader-list#testFileList
+
 
         script
             include ./hi.js
