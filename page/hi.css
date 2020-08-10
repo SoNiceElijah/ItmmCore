@@ -356,12 +356,12 @@ label[for="testFile"]:hover {
 }
 
 span.type {
-    color: #3663e0;
+    color: #e03693;
 }
 
 .method-test-params-list {
     padding: 20px;
-    background: #dee6eb;
+    background: #e4e1d9;
     font-size: 16px;
 }
 

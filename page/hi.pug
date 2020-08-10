@@ -16,7 +16,7 @@ html
                             .logo
                                 img#logotype(src="/blackone.gif")
                             .side
-                                .top ITMM<span>CLOUD</span><i>v0.2.1</i>
+                                .top ITMM<span>CLOUD</span><i>v0.2.2</i>
                                 .bot Open itmm api
                 .sheet
                     .center
@@ -62,9 +62,13 @@ html
                                                             each param, j in line.params
                                                                 code.method-test-item-params
                                                                     .mti-p-desc= param.desc
-                                                                    .mti-p-name <b>!{param.param}</b> : <span class="type">!{param.type}</span>
-                                                                        if param.required
-                                                                            span.mti-p-req *
+                                                                    .mti-p-name
+                                                                        <b>!{param.param}</b>
+                                                                        if param.required 
+                                                                            <span class="mti-p-req">*</span>
+                                                                        <span class="type"> : !{param.type}</span>
+                                                                        
+                                                                            
                 if a    
                     .sheet
                         .center

@@ -1,7 +1,8 @@
-const { json } = require("body-parser");
-
 let fileList = document.getElementById('testFileList');
 let fileUploader = document.getElementById('testFile');
+
+if(fileUploader)
+{
 
 fileUploader.onchange = (e) => {
 
@@ -126,4 +127,5 @@ function run(tag)
 
     xhr.send(JSON.stringify(data));
 
+}
 }
