@@ -1,4 +1,5 @@
 const fs = require('fs');
+const yaml = require('yaml');
 
 let config = {};
 
@@ -6,17 +7,8 @@ function read()
 {
     //Error if not exist
 
-    let str = fs.readFileSync(__dirname + '\\..\\.config','utf8');
-
-    let lines = str.split('\n');
-    for(let line of lines)
-    {
-        let tokens = line.split('=');
-        let prop = tokens[0].trim();
-        let value = tokens[1].trim();
-
-        config[prop] = value;
-    }  
+    let str = fs.readFileSync(__dirname + '\\..\\config.yaml','utf8');
+    config = yaml.parse(str);
 }
 
 read();

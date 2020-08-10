@@ -1,3 +1,4 @@
+
 let fileList = document.getElementById('testFileList');
 let fileUploader = document.getElementById('testFile');
 
@@ -59,10 +60,26 @@ function uploadFile(file,element,progress)
         console.log(request.status);    
         console.log(request.response);
 
-        element.classList.add("loader-list-item-done");
-        element.onclick = (e) => { console.log('clickable'); }; 
+        let answer = JSON.parse(request.response);
+        if(answer.error)
+        {
+            element.classList.add("loader-list-item-error");
+            element.innerText = ">50MB";
+        }
+        else
+        {
+            element.classList.add("loader-list-item-done");
+            element.onclick = (e) => { getFile(answer[0]) }; 
+        }
 
     });
 
     request.send(data);
+}
+
+function getFile(fileId)
+{
+    let a = document.createElement('a');
+    a.href = "/file/"+fileId;
+    a.click();
 }

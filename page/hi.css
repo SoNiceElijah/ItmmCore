@@ -276,6 +276,18 @@ label[for="testFile"]:hover {
     transition: 0.3s;
 }
 
+.loader-list-item-error {
+    background: #b9b9b9; 
+    border: 1px solid #b9b9b9;
+    color: #e0e0e0;
+
+    margin-top: 10px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
 .loader-list-item-done:hover {
     background: #e0e0e0; 
     border: 1px solid #b34053;
