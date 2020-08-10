@@ -2,46 +2,119 @@ data:
   -
     name : User
     content :
-      - POST /user/register x
-      - POST /user/login x
-      - POST /user/logout x
-      - POST /user/edit x
-      - POST /user/delete x
+      - 
+        path : POST /user/register x
+        desc : Регистрация пользователей
+        m :
+          - +login string
+          - +password string
+          - +username string
+          - +code string | Code from vk bot ****-****-****
+          - group string | itmm group
+          - sub string | subgroup (1,2)          
+      -
+        path : POST /user/login x
+        desc : Вводишь свои данный - получаешь токен, живешь с кайфом
+        m :
+          - +login string
+          - +password string
+      -
+        path : POST /user/logout x
+        desc : Как ты думаешь, что делает этот метод?
+      -
+        path : POST /user/edit x
+        desc : Можно поменять свой username, если с первого раза какую-то хрень написал. А также поменять пароль
+        m :
+          - username string
+          - +old_password string | объязательно, если меняешь пароль
+          - new_password string
+      -
+        path : POST /user/delete x
+        desc : Не используй этот метод, напиши админам, все сделают за тебя
   -
     name: Timetable
     content :
-      - POST /timetable/get
-      - POST /timetable/week
-      - POST /timetable/all
-      - POST /timetable/edit
-      - POST /timetable/update
+      -
+        path : POST /timetable/get
+      -
+        path : POST /timetable/week
+      -
+        path : POST /timetable/all
+      -
+        path : POST /timetable/edit
+      -
+        path : POST /timetable/update
   -
     name : Lesson
     content:
-      - POST /lesson/get
-      - POST /lesson/all
-      - POST /lesson/edit
-      - POST /lesson/update
+      -
+        path : POST /lesson/get
+      -
+        path : POST /lesson/all
+      -
+        path : POST /lesson/edit
+      -
+        path : POST /lesson/update
   -
     name : Conversation
     content:
-      - POST /conversation/get x
-      - POST /conversation/send x
-      - POST /conversation/upload x
-      - POST /conversation/history x
-      - POST /conversation/message x
-      - POST /conversation/like x
+      -
+        path : POST /conversation/get x
+        desc : Если ничего не передаешь в параметрах, то на тебя сваливаются все доступные id'шинки бесед, а если передаешь, то получаешь контент
+        m : 
+          - +cids [string] | Да, массив объязателен, в нем должны быть валидные АйДи
+          - full boolean | Наполнять ли модели, или и так норм (рекомендуется false)
+      -
+        path : POST /conversation/send x
+        desc : Отправить сообщение тусовке
+        m :
+          - +cid string | Куда отправляем
+          - +text string | Что отправляем
+          - attachments [string] | Массив id на вложения (не забудь сперва их загрузить)
+          - mid string | MessageID сообщения на которое мы отвечаем
+      -
+        path : POST /conversation/upload x
+        desc : Самый интересный метод, здесь ты можешь загрузить свой дикпик к нам на сервер (пожалуйста не делай так)
+      -
+        path : POST /conversation/history x
+        desc : Выгрузить диалог. Не забывай использовать пагинацию, а то все упадет и придется дать тебе п*зды (мы знаем твой вк)
+        m :
+          - +cid string | Какой чат выгружать
+          - offset number | Целое число, погугли что это
+          - limit number | Вторая составляющая пагинации, погугли и что это
+          - full boolean | Ставь сюда false, но если очень хочется, то поставь true разок и больше так не делай
+      -
+        path : POST /conversation/message x
+        desc : Если надо точечно высосать сообщения и ты вдруг (как???) знаешь их id, то тебе сюда
+        m :
+          - +mids [string] | Что за сообщения тебе нужны
+          - full boolean | Наполняем модели? 
+      -
+        path : POST /conversation/like x
+        desc : Ты вдруг захотел поставить эмоцию под сообещнием? Тогда юзни этот метод
+        m :
+          - +mid string | Куда паркуем твой царский лайк
+          - +emoji string | Какую собсно эмоцию ты хочешь забубенить (че за стремное слово) 
   -
     name : News
     content:
-      - POST /news/add
-      - POST /news/get
-      - POST /news/comment
+      -
+        path : POST /news/add
+      -
+        path : POST /news/get
+      -
+        path : POST /news/comment
   -
     name : File
     content:
-      - "GET /file/<file_id> x" 
+      -
+        path : "GET /file/<file_id> x" 
+        desc : Вроде все очевидно, пишешь адрес, заменяешь <> на attachment id и радуешься
   -
     name : Event
     content:
-      - POST /event/listen x
+      -
+        path : POST /event/listen x
+        desc : Наш собственный longpoll, прикинь? 
+        m :
+          - Поканичегонет string | Не работает, не тыкай

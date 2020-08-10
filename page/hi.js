@@ -1,3 +1,4 @@
+const { json } = require("body-parser");
 
 let fileList = document.getElementById('testFileList');
 let fileUploader = document.getElementById('testFile');
@@ -82,4 +83,47 @@ function getFile(fileId)
     let a = document.createElement('a');
     a.href = "/file/"+fileId;
     a.click();
+}
+
+function run(tag)
+{
+    let elems = document.getElementsByClassName('params-input');
+    let panel = document.getElementById(tag);
+
+    let data = {};
+    for(let e of elems)
+    {
+        if(e.id.indexOf(tag) != -1)
+        {
+            data[e.id.split('-')[1]] = e.value;
+        }
+    }
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", tag.replace(/_/gi,'/'),true);
+    xhr.setRequestHeader('Content-Type','application/json');
+
+    xhr.addEventListener('loadend', function(e) {
+        
+        console.log(xhr.status);    
+        console.log(xhr.response);
+
+        let resp = {};
+        try {
+            resp = JSON.parse(xhr.response);
+            if(resp.token)
+            {
+                document.cookie = `token=${resp.token}; expires=Thu, 18 Dec 2033 12:00:00 UTC`;
+            }
+        }
+        catch (ex) {
+            resp = xhr.response;
+         }
+
+        panel.innerHTML = '<b>Status:</b>' + xhr.status + "<br>" + JSON.stringify(resp,null,4);
+
+    });
+
+    xhr.send(JSON.stringify(data));
+
 }

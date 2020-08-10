@@ -96,6 +96,7 @@ router.post('/edit', $.v({
 router.post('/delete', $.v({}), async (req,res) => {
 
     await $.User.deleteOne({ _id : req.user._id});
+    $.auth.logout(req.token);
     res.sendStatus(200);
 
 });

@@ -329,3 +329,111 @@ label[for="testFile"]:hover {
 
     transition: ease-out 0.2s;
 }
+
+.method-test-item-title {
+    font-size: 24px;
+    margin: 20px 0 20px 0 ;
+    
+}
+
+.methods-list-test .center {
+    padding: 0;
+}
+
+.method-test-item {
+    border-bottom: 1px solid #cdcdcd;
+    padding-bottom: 30px;
+}
+
+.method-test-params-list {
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+    margin-top: 20px;
+
+    padding: 20px 20px 20px 0;
+}
+
+span.type {
+    color: #3663e0;
+}
+
+.method-test-params-list {
+    padding: 20px;
+    background: #dee6eb;
+    font-size: 16px;
+}
+
+.mti-p-name {
+    flex: 1;
+    padding: 0px 10px 5px 0px;
+}
+
+.mti-p-input-box {
+    flex: 2;
+}
+
+.method-test-board {
+    display: flex;
+}
+
+.method-test-output {
+    flex: 1;
+    padding: 20px;
+    margin-top: 20px;
+
+    background: #dbdbdb;
+}
+
+.mti-p-input-box input {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+    border: none;
+    background: transparent;
+    outline: none;
+
+    border-bottom: 1px solid #cdcdcd;
+    padding: 10px 10px 10px 0;
+
+    margin: 0px 10px 0 0px;
+    width: 350px;
+
+    font-style: italic;
+}
+
+.mti-p-req {
+    font-weight: 600;
+    color: #d6566b;
+    padding: 5px;
+}
+
+.mti-p-desc {
+    padding: 0 10px 0 0px;
+    font-style: italic;
+    color: #919191;
+}
+
+.button {
+    width: 350px;
+    text-align: center;
+
+    font-weight: 600;
+    color: #f8f8f8;
+
+    background: #83c5eb;
+    height: 40px;
+    line-height: 40px;
+
+    cursor: pointer;
+    user-select: none;
+    border-radius: 5px;
+    margin-top: 20px;
+
+    transition: 0.1s;
+}
+
+.button:hover {
+    background: #6fa2c0;
+    color: #e2e2e2;
+}

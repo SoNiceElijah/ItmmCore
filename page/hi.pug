@@ -16,7 +16,7 @@ html
                             .logo
                                 img#logotype(src="/blackone.gif")
                             .side
-                                .top ITMM<span>CLOUD</span><i>v0.1.0</i>
+                                .top ITMM<span>CLOUD</span><i>v0.2.1</i>
                                 .bot Open itmm api
                 .sheet
                     .center
@@ -44,15 +44,37 @@ html
                                             else
                                                 span.red
                                                 span.soon work in progress
+
                 .sheet
                     .center
-                        h2 Тест работы файлов
-                        p Тест для проверки загрузки файла на сервер. Не стесняйся и проверь!                        
-                        label(for="testFile") UPLOAD FILE
-                        input#testFile(type="file", name="testSheet" multiple )
+                        .methods-list-test
+                            each el in m
+                                each line, i in el.content
+                                    if line.desc || line.params.lenght >= 0
+                                        .center 
+                                            .method-test-item
+                                                .method-test-item-title <b>#{line.type}</b> #{line.name}
+                                                .method-test-item-desk= line.desc
+                                                
+                                                .method-test-board
+                                                    if line.params.length > 0
+                                                        .method-test-params-list                                                   
+                                                            each param, j in line.params
+                                                                code.method-test-item-params
+                                                                    .mti-p-desc= param.desc
+                                                                    .mti-p-name <b>!{param.param}</b> : <span class="type">!{param.type}</span>
+                                                                        if param.required
+                                                                            span.mti-p-req *
+                if a    
+                    .sheet
+                        .center
+                            h2 Тест работы файлов
+                            p Тест для проверки загрузки файла на сервер. Не стесняйся и проверь!                        
+                            label(for="testFile") UPLOAD FILE
+                            input#testFile(type="file", name="testSheet" multiple )
 
-                        .loader-list#testFileList
-
+                            .loader-list#testFileList                                                    
+                                            
 
         script
             include ./hi.js
