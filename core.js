@@ -21,7 +21,7 @@ async function main() {
 
     app.use(bp.json());
     app.use(cp());
-    app.use(ef(flimit));
+    app.use(ef({ ...flimit, tempFileDir : __dirname + '/cash/files/', }));
 
     app.use(express.static(__dirname + '\\public'));
     app.use(router);

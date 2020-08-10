@@ -21,6 +21,7 @@ const model = {
 
     level : Number,
 
+    conversartions : { type : [Types.ObjectId], ref : 'conversation'},
     role : { type : Number, default : 1 },
     
     date : { type : Number, default : Date.now },

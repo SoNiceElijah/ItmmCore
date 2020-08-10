@@ -2,11 +2,14 @@ const mongoose = require('mongoose');
 const crypto = require('crypto');
 const user = require('../model/_user');
 
-user.methods.password = async function(password) {
+user.methods.password = async function(password,check = true) {
 
-    let users = await this.constructor.find({login : this.login});
-    if(users.length >= 1)
-        return false;        
+    if(check)
+    {
+        let users = await this.constructor.find({login : this.login});
+        if(users.length >= 1)
+            return false;        
+    }
 
     this.salt = Math.random().toString(36).substring(2, 14) + Math.random().toString(36).substring(3, 15);
     this.hash = crypto.createHmac('sha256',this.salt).update(password).digest('hex');

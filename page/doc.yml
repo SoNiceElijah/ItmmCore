@@ -5,8 +5,8 @@ data:
       - POST /user/register x
       - POST /user/login x
       - POST /user/logout x
-      - POST /user/edit
-      - POST /user/delete
+      - POST /user/edit x
+      - POST /user/delete x
   -
     name: Timetable
     content :
@@ -25,14 +25,23 @@ data:
   -
     name : Conversation
     content:
-      - POST /conversation/get 
-      - POST /conversation/send
-      - POST /conversation/upload
-      - POST /conversation/comment
-      - POST /conversation/like
+      - POST /conversation/get x
+      - POST /conversation/send x
+      - POST /conversation/upload x
+      - POST /conversation/history x
+      - POST /conversation/message x
+      - POST /conversation/like x
   -
     name : News
     content:
       - POST /news/add
       - POST /news/get
       - POST /news/comment
+  -
+    name : File
+    content:
+      - "GET /file/<file_id> x" 
+  -
+    name : Event
+    content:
+      - POST /event/listen x

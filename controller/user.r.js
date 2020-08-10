@@ -61,11 +61,77 @@ router.post('/logout', $.v({
     res.sendStatus(200);
 });
 
+router.post('/edit', $.v({
+
+    username : String,
+    old_password : String,
+    new_password : String
+
+}), async (req,res) => {
+
+    if(req.body.username)
+    {
+        req.user.username = username;
+    }
+    if(req.body.new_password && !req.body.old_password)
+    {
+        return res.status(400).json({ error : "Old psaaword is requiered" });
+    }
+    if(req.body.new_password && req.body.old_password)
+    {
+        if(!res.user.check(req.body.old_password))
+        {
+            return res.status(400).json({ error : "Wrong password"});
+        }
+        else
+        {
+            await res.user.password(req.body.new_password,false);
+            await res.user.save();
+        }
+    }
+    
+    res.sendStatus(200);
+});
+
+router.post('/delete', $.v({}), async (req,res) => {
+
+    await $.User.deleteOne({ _id : req.user._id});
+    res.sendStatus(200);
+
+});
+
 //FIXME: test function
 router.get('/', $.v({}), async (req,res) => {
     
     let u = req.user;
     res.json(u);
 });
+
+router.use($.lvl(5));
+
+router.post('/ban', $.v({ $uid : String }), async (req,res) => {
+
+    await $.User.deleteOne({ _id : req.body.uid });
+
+    //TODO: u were banned event
+    res.sendStatus(200);
+
+});
+
+router.post('/promote', 
+    $.v({ $uid : String, $lvlup : Number, $roleup : Number }),
+    async (req,res) => {
+
+        let user = await $.User.findById(req.body.uid);
+        if(!user)
+        {
+            return res.status(400).json({ error : "Wrong user id"});
+        }
+
+        user.level = Math.max(0,Math.min(20,user.level + req.body.lvlup));
+        usert.role = Math.max(0,Math.min(20,user.role + req.body.roleup));
+
+    });
+
 
 module.exports = router;
