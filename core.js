@@ -2,10 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bp = require('body-parser');
 const cp = require('cookie-parser');
-const ef = require('express-fileupload');
 const config = require('./utils/config');
-const fs = require('fs');
-const flimit = require('./utils/limt');
+const logger = require('./utils/logger');
 
 const app = express();
 
@@ -18,10 +16,9 @@ async function main() {
 
     const router = require('./controller/_router');
 
-
+    app.use(logger);
     app.use(bp.json());
     app.use(cp());
-    app.use(ef({ ...flimit, tempFileDir : __dirname + '/cash/files/', }));
 
     app.use(express.static(__dirname + '\\public'));
     app.use(router);

@@ -200,7 +200,7 @@ router.post('/upload', async (req,res) => {
                 extension : ext,
                 url : path,
                 size : file.size,
-                owner : req.body.user._id
+                owner : req.user._id
             }); 
             await attachment.save();
             answerIds.push(attachment._id);

@@ -40,7 +40,7 @@ html
                                         td 
                                             if line.done
                                                 span.green
-                                                span.soon #{ Math.floor(Math.random() * 1000)} ms
+                                                span.soon #{ line.avg ? line.avg.toFixed(4) : "unmeasured" } ms
                                             else
                                                 span.red
                                                 span.soon work in progress

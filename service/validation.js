@@ -25,7 +25,7 @@ module.exports = function (obj) {
             value.required = true
             if(value.type == Array)
             {
-                value.length = { min : 1 };
+                value.length = { min : 1, max : 100 };
             }
         }
         else

@@ -1,21 +1,52 @@
+const { performance } = require('perf_hooks');
 
+let storage = {};
+
+let reqNum = 0;
 function profile(req,res,next) {
     
     let lockNum = reqNum++;
     let t1 = performance.now();
-    console.log(`${lockNum} ${req.method} ${req.originalUrl} %c[STARTED]`,'color : #2643b5');
 
-    res.on('finish', () => {            
+    let finished = false;
+
+    if(!storage[req.originalUrl])
+        storage[req.originalUrl] = { data : [], avg : 0 };
+
+
+    console.log(`${lockNum} ${req.method} ${req.originalUrl} %c[STARTED]`,'color : #2643b5');
+    
+    let finishLog = (type, color) => {
+
         let t2 = performance.now();
-        console.log(`${lockNum} ${req.method} ${req.originalUrl} in ${t2 - t1}ms %c[FINISHED]  `,'color : #24bf50');
+        let time = t2 - t1;
+        console.log(`${lockNum} ${req.method} ${req.originalUrl} in ${time}ms %c[${type}]  `,`color : ${color}`);
+     
+        storage[req.originalUrl].data.push(time);
+        if(storage[req.originalUrl].data.length > 10)
+        {
+            storage[req.originalUrl].data.shift();
+        }
+        storage[req.originalUrl].avg = storage[req.originalUrl].data.reduce((acc,el) => acc + el) / storage[req.originalUrl].data.length; 
+    }
+
+    res.on('finish', () => {    
+        
+        finished = true;
+        
+        finishLog('FINISHED','#24bf50');
     })
 
     res.on('close', () => {
-        let t2 = performance.now();
-        console.log(`${lockNum} ${req.method} ${req.originalUrl} in ${t2 - t1}ms %c[CLOSED] `,'color : #bf3e24');
+
+        if(finished)
+            return;
+
+        finishLog('CLOSED','#bf3e24');
     })
 
     next();
 }
 
 module.exports = profile
+module.exports.avg = (path) => { return storage[path] ? storage[path].avg : null } 

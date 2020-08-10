@@ -7,10 +7,13 @@ const news = require('./news.r');
 const timetable = require('./timetable.r');
 const user = require('./user.r');
 const file = require('./file.r');
+const flimit = require('../utils/limt');
+const ef = require('express-fileupload');
 
 const $ = require('../service/_index');
 
 router.use($.auth.middleware);
+router.use(ef({ ...flimit, tempFileDir : '../cash/files/', }));
 router.use('/event',event);
 router.use('/conversation',conversation);
 router.use('/lesson',lesson);

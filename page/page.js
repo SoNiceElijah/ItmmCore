@@ -1,6 +1,7 @@
 const pug = require('pug');
 const yaml = require('yaml');
 const fs = require('fs');
+const { avg } = require('../utils/logger');
 
 module.exports = function(req,res) {
 
@@ -19,7 +20,8 @@ module.exports = function(req,res) {
             arr.push({
                 done : done,
                 type : tokens[0],
-                name : tokens[1]
+                name : tokens[1],
+                avg : avg(tokens[1])
             });
         }
         model.push({
