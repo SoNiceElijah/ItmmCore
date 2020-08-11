@@ -2,10 +2,11 @@ const pug = require('pug');
 const yaml = require('yaml');
 const fs = require('fs');
 const { avg } = require('../utils/logger');
+const path = require('path');
 
 module.exports = function(req,res) {
 
-    let file = fs.readFileSync(__dirname + '\\doc.yml', 'utf8');
+    let file = fs.readFileSync(path.resolve(__dirname, 'doc.yml'), 'utf8');
     let data = yaml.parse(file);
 
     let model = [];
