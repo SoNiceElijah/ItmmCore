@@ -5,6 +5,8 @@ const cp = require('cookie-parser');
 const config = require('./utils/config');
 const logger = require('./utils/logger');
 
+const path = require('path');
+
 const app = express();
 
 async function main() {
@@ -20,7 +22,7 @@ async function main() {
     app.use(bp.json());
     app.use(cp());
 
-    app.use(express.static(__dirname + '\\public'));
+    app.use(express.static(path.resolve(__dirname,'public')));
     app.use(router);
 
     app.get('/', require('./page/page'));
