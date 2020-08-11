@@ -9,11 +9,12 @@ const user = require('./user.r');
 const file = require('./file.r');
 const flimit = require('../utils/limt');
 const ef = require('express-fileupload');
+const path = require('path');
 
 const $ = require('../service/_index');
 
 router.use($.auth.middleware);
-router.use(ef({ ...flimit, tempFileDir : '../cash/files/', }));
+router.use(ef({ ...flimit, tempFileDir : path.resolve(__dirname,'..','cash/files/') }));
 router.use('/event',event);
 router.use('/conversation',conversation);
 router.use('/lesson',lesson);
