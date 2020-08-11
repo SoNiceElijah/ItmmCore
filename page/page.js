@@ -69,5 +69,5 @@ module.exports = function(req,res) {
     }
 
     let a = req.user ? true : false; //FIXME: 
-    res.send(pug.renderFile(__dirname + '\\hi.pug', { m : model, a : a}));
+    res.send(pug.renderFile(path.resolve(__dirname, 'hi.pug'), { m : model, a : a}));
 };
