@@ -2,10 +2,9 @@ const { performance } = require('perf_hooks');
 
 let storage = {};
 
-let reqNum = 0;
 function profile(req,res,next) {
     
-    let lockNum = reqNum++;
+    let lockNum = Date.now() + '' + Math.floor(Math.random() * 1000);
     let t1 = performance.now();
 
     let finished = false;

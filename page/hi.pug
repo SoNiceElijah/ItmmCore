@@ -2,74 +2,110 @@ html
     head
         <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
         <script src="logo.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
         title API - itmm
         style
             include ./hi.css
     body
+        <!-- Как тебе код? -->
+        .center-fixed
+            .center-ajast
+                .control.hidden-control#control
+                    .mark(selected="selected").none
+                        .mark-title Главная
+                    .mark
+                        .mark-title Что это
+                    .mark
+                        .mark-title Зачем это
+                    .mark
+                        .mark-title Апи
+                    .mark
+                        .mark-title Методы
 
-        .wrapper  
+        .wrapper#win
             .scroller  
                 .sheet#s0
-                    .big
-                        .box
-                            .logo
-                                img#logotype(src="/blackone.gif")
-                            .side
-                                .top ITMM<span>CLOUD</span><i>v0.2.2</i>
-                                .bot Open itmm api
+                    .sheet-content
+                        .big
+                            .box
+                                .side
+                                    .bot Open api
+                                    .top
+                                        .logo                                        
+                                        .top-bot <i>v0.2.3</i>
+                                
                 .sheet
-                    .center
-                        h2 Вступление
-                        p Собсно собираем этот апи. Он открытый и к нему есть документация. 
-                            | Это означает, что мы приветствуем <b>любое добросоветсное</b> использование  
-                            | наших методов. Зацените гифку сверху кстати. Халтура ссаная, потому что я не могу 
-                            | рендерить прозрачные гифки какого-то хера. Пипец обидно.
-                            | А еще я никогда не умел писать большие тексты. Так что надо попросить кого-то это сделать.
-
-                    
-                        h2 Methods
-
-                        each el, i in m
-                            h3= el.name                        
-                            table.methods 
-                                each line, j in el.content
-                                    tr(class="row-" + ((j%2)+1))
-                                        td <b> #{line.type} </b>
-                                        td <code> #{line.name} </code>
-                                        td 
-                                            if line.done
-                                                span.green
-                                                span.soon #{ line.avg ? line.avg.toFixed(4) : "unmeasured" } ms
-                                            else
-                                                span.red
-                                                span.soon work in progress
+                    .sheet-content
+                        .center
+                            h1 Что это
+                            p Здесь находится документация к открытому апи иитмм. (Ну и сам апи) 
+                            p Мы приветствуем любое <b>добросоветсное</b> использование данного апи. Сделай клёвое приложение на его основе! 
+                                | Есть идея как его использовать? Напиши приложение! Будет просто бомбически...
+                                | Хочешь поработать над самим api? Есть идеи по улучшению данного сервиса? Напиши нам
+                            p На страницах далее ты найдешь методы, и их диагностику и доки. Мб блог или еще что-то такое. Хз. Пока нет, но мб появится
+                .sheet
+                    .sheet-content
+                        .center
+                            h1 Зачем это
+                            p <b>Первое</b>. Мы за <i>opensource</i> и открытость информации. Более того, мы за удобный доступ к открытой информации. Наш официальный ресурс не предоставляет в открутыю никакого удобного доступа к данным. Мы хотим это исправить
+                            p <b>Второе</b>. Открытые свободные ресурсы провоцируют талантливых творческих людей на развитие инфраструктуры института, что повышает его привлекательность и статутс.
+                            p <b>Третье</b>. Я просто <s>заебался</s> устал парсить xls xlsx файлы с расписанием, которые постоянно меняют формат и верстку. Это просто <s>пиздец</s> невозможно
+                            p <b>Четвертое</b>. Я хз, Влад, придумай что сюда написать плез и мб стоит это кинуть людям кто шарит как писать нормальный текст? Пусть отредачат? Что думаешь? Напиши мне
+                            
 
                 .sheet
-                    .center
-                        .methods-list-test
-                            each el in m
-                                each line, i in el.content
-                                    if line.desc || line.params.lenght >= 0
-                                        .center 
-                                            .method-test-item
-                                                .method-test-item-title <b>#{line.type}</b> #{line.name}
-                                                .method-test-item-desk= line.desc
-                                                
-                                                .method-test-board
-                                                    if line.params.length > 0
-                                                        .method-test-params-list                                                   
-                                                            each param, j in line.params
-                                                                code.method-test-item-params
-                                                                    .mti-p-desc= param.desc
-                                                                    .mti-p-name
-                                                                        <b>!{param.param}</b>
-                                                                        if param.required 
-                                                                            <span class="mti-p-req">*</span>
-                                                                        <span class="type"> : !{param.type}</span>
+                    .sheet-content
+                        .center
+                            h1 API
+
+                            p Здесь ты найдешь полный список методов, и узнаешь краткую информацию о состоянии каждого метода
+
+                            each el, i in m
+                                h3= el.name                        
+                                table.methods 
+                                    each line, j in el.content
+                                        tr(class="row-" + ((j%2)+1))
+                                            td <b> #{line.type} </b>
+                                            td <code> #{line.name} </code>
+                                            td 
+                                                if line.done
+                                                    span.green
+                                                    span.soon #{ line.avg ? line.avg.toFixed(1) : "unmeasured" } ms
+                                                else
+                                                    span.red
+                                                    span.soon work in progress
+
+                .sheet
+                    .sheet-content
+                        .center
+                            h1 Methods
+
+                            p Здесь содержиться документация к каждому методу api с комментами разрабов
+
+                            .methods-list-test
+                                each el in m
+                                    each line, i in el.content
+                                        if line.desc || line.params.lenght >= 0
+                                            .center 
+                                                .method-test-item(id="id"+line.name.replace(/\//gi,'_'))
+                                                    .method-test-item-title <b>#{line.type}</b> #{line.name}
+                                                    .method-test-item-desk= line.desc
+                                                    
+                                                    .method-test-board
+                                                        if line.params.length > 0
+                                                            .method-test-params-list                                                   
+                                                                each param, j in line.params
+                                                                    code.method-test-item-params
+                                                                        .mti-p-desc= param.desc
+                                                                        .mti-p-name
+                                                                            <b>!{param.param}</b>
+                                                                            if param.required 
+                                                                                <span class="mti-p-req">*</span>
+                                                                            <span class="type"> : !{param.type}</span>
                                                                         
                                                                             
-                if a    
+                //if a    
                     .sheet
                         .center
                             h2 Тест работы файлов

@@ -1,6 +1,22 @@
 let fileList = document.getElementById('testFileList');
 let fileUploader = document.getElementById('testFile');
 
+
+console.log(
+`
+  _  _________  __      __   __      __
+ | | |__   __| |  \\    /  | |  \\    /  |
+ | |    | |    |   \\  /   | |   \\  /   |
+ | |    | |    | |\\ \\/ /| | | |\\ \\/ /| | 
+ |_|    |_|    |_| \\__/ |_| |_| \\__/ |_|
+ 
+ `
+);
+
+console.log('Привет! Как те сайт и апи?')
+console.log('Норм? Хочешь поучаствовать в разработке?')
+console.log('Пиши Владу https://vk.com/vlavilon');
+
 if(fileUploader)
 {
 
@@ -128,4 +144,137 @@ function run(tag)
     xhr.send(JSON.stringify(data));
 
 }
+}
+
+let scrollAmination = false;
+let scrollPage = 0;
+let pages = document.getElementsByClassName('sheet');
+let scrollPageNumber = pages.length;
+let marks = document.getElementsByClassName('mark');
+
+let mode = () => document.body.clientWidth < 1100;
+
+for(let i = 0; i < marks.length; ++i)
+{
+    marks[i].onclick = (e) => { movePage(i - scrollPage);  }
+}
+
+document.body.onwheel = function(e) {
+
+    movePage(Math.sign(e.deltaY),e);
+}
+
+function movePage(move,e)
+{
+
+    if(scrollAmination)
+        return;
+
+    let content = pages[scrollPage].querySelector('.sheet-content');   
+
+    if(move === 0)
+    {
+        content.scroll({
+            top: 0,
+            left: 0,
+            behavior : 'smooth'
+        })
+        return;
+    }
+
+    if(e)
+    {
+        if(content.scrollTop !== (content.scrollHeight - content.clientHeight) && e.deltaY > 0)
+            return;
+
+        if(content.scrollTop !== 0 && e.deltaY < 0)
+            return; 
+    }
+
+    scrollAmination = true;
+
+
+    let height = document.getElementById('s0').clientHeight;
+    let width = document.getElementById('s0').clientWidth;
+
+    marks[scrollPage].removeAttribute('selected');
+    scrollPage += move;
+    scrollPage = Math.min(scrollPageNumber-1,Math.max(0,scrollPage));
+    marks[scrollPage].setAttribute('selected','selected');
+
+    let topOffset = 0;
+    let leftOffset = 0;
+
+    if(mode())
+    {
+        leftOffset = scrollPage * width;
+    }
+    else
+    {
+        topOffset = scrollPage * height;
+    }
+
+    document.getElementById('win').scroll({
+        top : topOffset ,
+        left : leftOffset,
+        behavior : 'smooth'
+    })
+
+    if(scrollPage === 0)
+        document.getElementById('control').classList.add('hidden-control');
+    else
+        document.getElementById('control').classList.remove('hidden-control');
+
+    isScrolling(document.getElementById('win'),topOffset,leftOffset).then(() => { scrollAmination = false; });
+}
+
+function isScrolling(element, top, left)
+{
+    return new Promise((resolve,reject) => {
+
+        let interval = setInterval(() => {
+
+            if(element.scrollTop == top && element.scrollLeft == left)
+            {
+                clearInterval(interval);
+                resolve();
+            }
+
+        },25);
+
+    });
+}
+
+window.onresize = () => {
+
+    let height = document.getElementById('s0').clientHeight;
+    let width = document.getElementById('s0').clientWidth;
+
+    document.getElementById('win').scroll(
+        scrollPage * width,
+        scrollPage * height,
+    );
+}
+
+let start = null;
+window.ontouchstart = function(e){
+    if(e.touches.length === 1){
+        start = e.touches.item(0).clientX;
+    } else {
+        start = null;
+    }
+}
+
+window.ontouchend = function(e){
+    let  offset = 70;
+    if(start){
+        let end = e.changedTouches.item(0).clientX;
+
+        if(end > start + offset){
+            movePage(-1);
+        }
+        if(end < start - offset ){
+            movePage(1);
+        }
+    }
 }
