@@ -278,3 +278,5 @@ window.ontouchend = function(e){
         }
     }
 }
+
+document.getElementById('mvdir').onclick = () => { movePage(1); }
